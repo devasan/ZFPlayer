@@ -156,7 +156,9 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         //add by asan
         self.closeBtn.hidden = YES;
         self.videoSlider.hidden = YES;
+        self.backBtn.hidden = YES;
         [self hideControlView];
+        self.userInteractionEnabled = NO;
         
     }
     return self;
