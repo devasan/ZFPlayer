@@ -1024,6 +1024,8 @@ typedef NS_ENUM(NSInteger, PanDirection){
             [self.controlView zf_playerPlayEnd];
         }
     }
+    
+    [self as_autoRepeatCurrentVideo];
 }
 
 /**
@@ -1502,6 +1504,23 @@ typedef NS_ENUM(NSInteger, PanDirection){
     } else {
         self.state = ZFPlayerStateBuffering;
     }
+}
+
+
+- (void)as_autoRepeatCurrentVideo
+{
+    // 没有播放完
+    self.playDidEnd   = NO;
+    // 重播改为NO
+    self.repeatToPlay = NO;
+    [self seekToTime:0 completionHandler:nil];
+    
+    if ([self.videoURL.scheme isEqualToString:@"file"]) {
+        self.state = ZFPlayerStatePlaying;
+    } else {
+        self.state = ZFPlayerStateBuffering;
+    }
+    
 }
 
 /** 加载失败按钮事件 */
