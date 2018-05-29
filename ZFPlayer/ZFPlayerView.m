@@ -921,11 +921,11 @@ typedef NS_ENUM(NSInteger, PanDirection){
  */
 - (void)singleTapAction:(UIGestureRecognizer *)gesture {
     if ([gesture isKindOfClass:[NSNumber class]] && ![(id)gesture boolValue]) {
-         [self _fullScreenAction];
+//         [self _fullScreenAction];//add by asan
          return;
     }
     if (gesture.state == UIGestureRecognizerStateRecognized) {
-        if (self.isBottomVideo && !self.isFullScreen) { [self _fullScreenAction]; }
+        if (self.isBottomVideo && !self.isFullScreen) { /*[self _fullScreenAction];add by asan*/ }
         else {
             if (self.playDidEnd) { return; }
             else {
