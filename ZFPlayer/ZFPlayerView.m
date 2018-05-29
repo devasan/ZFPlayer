@@ -1254,7 +1254,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     self.isPauseByUser = YES;
     
     // 添加手势
-    [self createGesture];
+//    [self createGesture];//add by asan
     
 }
 
