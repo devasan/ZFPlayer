@@ -947,7 +947,9 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     if (self.isShowing) {
         [self zf_playerHideControlView];
     } else {
-        [self zf_playerShowControlView];
+//        [self zf_playerShowControlView]; //add by asan
+        [self zf_playerHideControlView];
+
     }
 }
 /**

@@ -1477,7 +1477,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 }
 
 - (void)zf_controlView:(UIView *)controlView fullScreenAction:(UIButton *)sender {
-    [self _fullScreenAction];
+//    [self _fullScreenAction];//add by asan
 }
 
 - (void)zf_controlView:(UIView *)controlView lockScreenAction:(UIButton *)sender {
