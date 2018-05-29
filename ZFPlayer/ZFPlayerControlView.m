@@ -478,12 +478,15 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 }
 
 - (void)playerPlayDidEnd {
+    /*
     self.backgroundColor  = RGBA(0, 0, 0, .6);
     self.repeatBtn.hidden = NO;
+     
     // 初始化显示controlView为YES
     self.showing = NO;
     // 延迟隐藏controlView
     [self zf_playerShowControlView];
+     add by asan */
 }
 
 /**
