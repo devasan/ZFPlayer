@@ -1098,14 +1098,24 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 
 /** 播放完了 */
 - (void)zf_playerPlayEnd {
-    self.repeatBtn.hidden = NO;
+//    self.repeatBtn.hidden = NO;
+//    self.playeEnd         = YES;
+//    self.showing          = NO;
+//    // 隐藏controlView
+//    [self hideControlView];
+//    self.backgroundColor  = RGBA(0, 0, 0, .3);
+//    ZFPlayerShared.isStatusBarHidden = NO;
+//    self.bottomProgressView.alpha = 0;
+    
+    self.repeatBtn.hidden = YES;
     self.playeEnd         = YES;
     self.showing          = NO;
     // 隐藏controlView
     [self hideControlView];
-    self.backgroundColor  = RGBA(0, 0, 0, .3);
+//    self.backgroundColor  = RGBA(0, 0, 0, .3); add by asan
     ZFPlayerShared.isStatusBarHidden = NO;
     self.bottomProgressView.alpha = 0;
+
 }
 
 /** 
