@@ -111,7 +111,8 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self = [super init];
     if (self) {
 
-//        [self addSubview:self.placeholderImageView]; add by asan
+        [self addSubview:self.placeholderImageView];
+        self.placeholderImageView.hidden = YES ;//add by asan 
         [self addSubview:self.topImageView];
         [self addSubview:self.bottomImageView];
         [self.bottomImageView addSubview:self.startBtn];
