@@ -111,7 +111,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self = [super init];
     if (self) {
 
-        [self addSubview:self.placeholderImageView];
+//        [self addSubview:self.placeholderImageView]; add by asan
         [self addSubview:self.topImageView];
         [self addSubview:self.bottomImageView];
         [self.bottomImageView addSubview:self.startBtn];
@@ -547,7 +547,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         self.topImageView.alpha    = 1;
         self.bottomImageView.alpha = 1;
     }
-    self.backgroundColor           = RGBA(0, 0, 0, 0.3);
+//    self.backgroundColor           = RGBA(0, 0, 0, 0.3); add by asan
     self.lockBtn.alpha             = 1;
     if (self.isCellVideo) {
         self.shrink                = NO;
