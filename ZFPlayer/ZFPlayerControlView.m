@@ -549,7 +549,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         self.bottomImageView.alpha = 1;
     }
 //    self.backgroundColor           = RGBA(0, 0, 0, 0.3); add by asan
-    self.lockBtn.alpha             = 1;
+//    self.lockBtn.alpha             = 1;
     if (self.isCellVideo) {
         self.shrink                = NO;
     }
