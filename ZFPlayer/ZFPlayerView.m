@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 @property (nonatomic, strong) AVPlayerLayer          *playerLayer;
 @property (nonatomic, strong) id                     timeObserve;
 /** 滑杆 */
-@property (nonatomic, strong) UISlider               *volumeViewSlider; 
+@property (nonatomic, strong) UISlider               *volumeViewSlider;
 /** 用来保存快进的总时长 */
 @property (nonatomic, assign) CGFloat                sumTime;
 /** 定义一个实例变量，保存枚举值 */
@@ -185,17 +185,17 @@ typedef NS_ENUM(NSInteger, PanDirection){
     
     
     /*
-    // 监测设备方向
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDeviceOrientationChange)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onStatusBarOrientationChange)
-                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
-                                               object:nil];
+     // 监测设备方向
+     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+     [[NSNotificationCenter defaultCenter] addObserver:self
+     selector:@selector(onDeviceOrientationChange)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+     
+     [[NSNotificationCenter defaultCenter] addObserver:self
+     selector:@selector(onStatusBarOrientationChange)
+     name:UIApplicationDidChangeStatusBarOrientationNotification
+     object:nil];
      */
     
 }
@@ -414,7 +414,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
  */
 - (void)createGesture {
     // 单击
-    self.singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapAction:)];
+    self.singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTapAction:)];
     self.singleTap.delegate                = self;
     self.singleTap.numberOfTouchesRequired = 1; //手指数
     self.singleTap.numberOfTapsRequired    = 1;
@@ -426,7 +426,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     self.doubleTap.numberOfTouchesRequired = 1; //手指数
     self.doubleTap.numberOfTapsRequired    = 2;
     [self addGestureRecognizer:self.doubleTap];
-
+    
     // 解决点击当前view时候响应其他控件事件
     [self.singleTap setDelaysTouchesBegan:YES];
     [self.doubleTap setDelaysTouchesBegan:YES];
@@ -627,7 +627,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
         return;
     }
     [[UIApplication sharedApplication].keyWindow addSubview:self];
-
+    
     if (CGPointEqualToPoint(self.shrinkRightBottomPoint, CGPointZero)) { // 没有初始值
         self.shrinkRightBottomPoint = CGPointMake(10, self.scrollView.contentInset.bottom+10);
     } else {
@@ -817,7 +817,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
                 if ([self.scrollView isKindOfClass:[UITableView class]]) {
                     UITableView *tableView = (UITableView *)self.scrollView;
                     [tableView scrollToRowAtIndexPath:self.indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-
+                    
                 } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
                     UICollectionView *collectionView = (UICollectionView *)self.scrollView;
                     [collectionView scrollToItemAtIndexPath:self.indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
@@ -896,7 +896,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
         // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
         isBuffering = NO;
         if (!self.playerItem.isPlaybackLikelyToKeepUp) { [self bufferingSomeSecond]; }
-       
+        
     });
 }
 
@@ -925,11 +925,11 @@ typedef NS_ENUM(NSInteger, PanDirection){
  */
 - (void)singleTapAction:(UIGestureRecognizer *)gesture {
     if ([gesture isKindOfClass:[NSNumber class]] && ![(id)gesture boolValue]) {
-//         [self _fullScreenAction];//add by asan
-         return;
+        [self _fullScreenAction];//add by asan
+        return;
     }
     if (gesture.state == UIGestureRecognizerStateRecognized) {
-        if (self.isBottomVideo && !self.isFullScreen) { /*[self _fullScreenAction];add by asan*/ }
+        if (self.isBottomVideo && !self.isFullScreen) { [self _fullScreenAction];/*add by asan*/ }
         else {
             if (self.playDidEnd) { return; }
             else {
@@ -976,12 +976,12 @@ typedef NS_ENUM(NSInteger, PanDirection){
         } else if (point.y > ScreenHeight - height/2) {
             point.y = ScreenHeight - height/2 - distance;
         }
-
+        
         [UIView animateWithDuration:0.5 animations:^{
             view.center = point;
             self.shrinkRightBottomPoint = CGPointMake(ScreenWidth - view.frame.origin.x - width, ScreenHeight - view.frame.origin.y - height);
         }];
-    
+        
     } else {
         view.center = point;
         self.shrinkRightBottomPoint = CGPointMake(ScreenWidth - view.frame.origin.x- view.frame.size.width, ScreenHeight - view.frame.origin.y-view.frame.size.height);
@@ -1115,13 +1115,13 @@ typedef NS_ENUM(NSInteger, PanDirection){
                 self.sumTime      = time.value/time.timescale;
             }
             else if (x < y){ // 垂直移动
-                self.panDirection = PanDirectionVerticalMoved;
-                // 开始滑动的时候,状态改为正在控制音量
-                if (locationPoint.x > self.bounds.size.width / 2) {
-                    self.isVolume = YES;
-                }else { // 状态改为显示亮度调节
-                    self.isVolume = NO;
-                }
+                //                self.panDirection = PanDirectionVerticalMoved;
+                //                // 开始滑动的时候,状态改为正在控制音量
+                //                if (locationPoint.x > self.bounds.size.width / 2) {
+                //                    self.isVolume = YES;
+                //                }else { // 状态改为显示亮度调节
+                //                    self.isVolume = NO;
+                //                }
             }
             break;
         }
@@ -1132,7 +1132,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
                     break;
                 }
                 case PanDirectionVerticalMoved:{
-                    [self verticalMoved:veloctyPoint.y]; // 垂直移动方法只要y方向的值
+                    //                    [self verticalMoved:veloctyPoint.y]; // 垂直移动方法只要y方向的值
                     break;
                 }
                 default:
@@ -1153,7 +1153,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
                 }
                 case PanDirectionVerticalMoved:{
                     // 垂直移动结束后，把状态改为不再控制音量
-                    self.isVolume = NO;
+                    //                    self.isVolume = NO;
                     break;
                 }
                 default:
@@ -1172,7 +1172,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
  *  @param value void
  */
 - (void)verticalMoved:(CGFloat)value {
-    self.isVolume ? (self.volumeViewSlider.value -= value / 10000) : ([UIScreen mainScreen].brightness -= value / 10000);
+    //    self.isVolume ? (self.volumeViewSlider.value -= value / 10000) : ([UIScreen mainScreen].brightness -= value / 10000);
 }
 
 /**
@@ -1236,11 +1236,11 @@ typedef NS_ENUM(NSInteger, PanDirection){
     if ([touch.view isKindOfClass:[UISlider class]]) {
         return NO;
     }
-
+    
     return YES;
 }
 
-#pragma mark - Setter 
+#pragma mark - Setter
 
 /**
  *  videoURL的setter方法
@@ -1260,7 +1260,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     self.isPauseByUser = YES;
     
     // 添加手势
-//    [self createGesture];//add by asan
+    [self createGesture];//add by asan
     
 }
 
@@ -1289,7 +1289,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
  */
 - (void)setPlayerItem:(AVPlayerItem *)playerItem {
     if (_playerItem == playerItem) {return;}
-
+    
     if (_playerItem) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
         [_playerItem removeObserver:self forKeyPath:@"status"];
@@ -1312,7 +1312,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 /**
  *  根据tableview的值来添加、移除观察者
  *
- *  @param tableView tableView 
+ *  @param tableView tableView
  */
 - (void)setScrollView:(UIScrollView *)scrollView {
     if (_scrollView == scrollView) { return; }
@@ -1373,14 +1373,14 @@ typedef NS_ENUM(NSInteger, PanDirection){
 
 - (void)setPlayerModel:(ZFPlayerModel *)playerModel {
     _playerModel = playerModel;
-
+    
     if (playerModel.seekTime) { self.seekTime = playerModel.seekTime; }
     [self.controlView zf_playerModel:playerModel];
     // 分辨率
     if (playerModel.resolutionDic) {
-       self.resolutionDic = playerModel.resolutionDic;
+        self.resolutionDic = playerModel.resolutionDic;
     }
-
+    
     if (playerModel.scrollView && playerModel.indexPath && playerModel.videoURL) {
         NSCAssert(playerModel.fatherViewTag, @"请指定playerViews所在的faterViewTag");
         [self cellVideoWithScrollView:playerModel.scrollView AtIndexPath:playerModel.indexPath];
@@ -1483,7 +1483,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 }
 
 - (void)zf_controlView:(UIView *)controlView fullScreenAction:(UIButton *)sender {
-//    [self _fullScreenAction];//add by asan
+    [self _fullScreenAction];//add by asan
 }
 
 - (void)zf_controlView:(UIView *)controlView lockScreenAction:(UIButton *)sender {
@@ -1529,7 +1529,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 
 /** 加载失败按钮事件 */
 - (void)zf_controlView:(UIView *)controlView failAction:(UIButton *)sender {
-     [self configZFPlayer];
+    [self configZFPlayer];
 }
 
 - (void)zf_controlView:(UIView *)controlView resolutionAction:(UIButton *)sender {
@@ -1563,7 +1563,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
     
     [self.controlView zf_playerPlayBtnState:YES];
     [self seekToTime:dragedSeconds completionHandler:^(BOOL finished) {}];
-
+    
 }
 
 - (void)zf_controlView:(UIView *)controlView progressSliderValueChanged:(UISlider *)slider {
@@ -1582,10 +1582,10 @@ typedef NS_ENUM(NSInteger, PanDirection){
         
         //计算出拖动的当前秒数
         CGFloat dragedSeconds = floorf(totalTime * slider.value);
-
+        
         //转换成CMTime才能给player来控制播放进度
         CMTime dragedCMTime   = CMTimeMake(dragedSeconds, 1);
-   
+        
         [controlView zf_playerDraggedTime:dragedSeconds totalTime:totalTime isForward:style hasPreview:self.isFullScreen ? self.hasPreviewView : NO];
         
         if (totalTime > 0) { // 当总时长 > 0时候才能拖动slider
@@ -1618,7 +1618,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
         // 此时设置slider值为0
         slider.value = 0;
     }
-
+    
 }
 
 - (void)zf_controlView:(UIView *)controlView progressSliderTouchEnded:(UISlider *)slider {
