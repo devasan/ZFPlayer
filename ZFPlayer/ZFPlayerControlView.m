@@ -89,7 +89,8 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 @property (nonatomic, strong) UIProgressView          *bottomProgressView;
 /** 分辨率的名称 */
 @property (nonatomic, strong) NSArray                 *resolutionArray;
-
+/** 显示控制层 */
+@property (nonatomic, assign, getter=isShowing) BOOL  showing;
 /** 小屏播放 */
 @property (nonatomic, assign, getter=isShrink ) BOOL  shrink;
 /** 在cell上播放 */

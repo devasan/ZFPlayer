@@ -27,8 +27,4 @@
 
 @interface ZFPlayerControlView : UIView 
 
-
-/** 显示控制层 */
-@property (nonatomic, assign, getter=isShowing) BOOL  showing;
-
 @end

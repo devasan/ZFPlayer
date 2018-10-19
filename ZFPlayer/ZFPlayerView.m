@@ -948,10 +948,6 @@ typedef NS_ENUM(NSInteger, PanDirection){
     if (self.playDidEnd) { return;  }
     // 显示控制层
     [self.controlView zf_playerShowControlView];
-    if (!self.controlView.isShowing) {
-        return;
-    }
-
     if (self.isPauseByUser) { [self play]; }
     else { [self pause]; }
     if (!self.isAutoPlay) {
