@@ -946,6 +946,11 @@ typedef NS_ENUM(NSInteger, PanDirection){
  */
 - (void)doubleTapAction:(UIGestureRecognizer *)gesture {
     if (self.playDidEnd) { return;  }
+    if (self.state == ZFPlayerStatePlaying) {
+        // 显示控制层
+        [self.controlView zf_playerShowControlView];
+        return;
+    }
     // 显示控制层
     [self.controlView zf_playerShowControlView];
     if (self.isPauseByUser) { [self play]; }
