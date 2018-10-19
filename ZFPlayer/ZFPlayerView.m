@@ -1029,7 +1029,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
         }
     }
     
-    [self as_autoRepeatCurrentVideo];
+//    [self as_autoRepeatCurrentVideo];
 }
 
 /**
