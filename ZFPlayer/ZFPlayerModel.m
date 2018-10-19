@@ -25,10 +25,10 @@
 
 @implementation ZFPlayerModel
 
-- (UIImage *)placeholderImage {
-    if (!_placeholderImage) {
-        _placeholderImage = ZFPlayerImage(@"ZFPlayer_loading_bgView");
-    }
-    return _placeholderImage;
-}
+//- (UIImage *)placeholderImage {
+//    if (!_placeholderImage) {
+//        _placeholderImage = ZFPlayerImage(@"ZFPlayer_loading_bgView");
+//    }
+//    return _placeholderImage;
+//}
 @end
