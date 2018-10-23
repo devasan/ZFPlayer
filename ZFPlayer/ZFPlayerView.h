@@ -122,4 +122,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
  */
 - (void)pause;
 
+/**
+ 显示控制层
+ */
+- (void)showPlayerShowControlView;
+
 @end

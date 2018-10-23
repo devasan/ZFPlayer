@@ -1651,5 +1651,8 @@ typedef NS_ENUM(NSInteger, PanDirection){
 }
 
 #pragma clang diagnostic pop
-
+- (void)showPlayerShowControlView
+{
+    [self.controlView zf_playerShowControlView];
+}
 @end
