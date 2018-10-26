@@ -308,7 +308,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         make.bottom.mas_offset(0);
     }];
     
-    [self bringSubviewToFront:self.playeBtn];
+//    [self bringSubviewToFront:self.playeBtn];
 }
 
 - (void)layoutSubviews {
@@ -805,7 +805,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     if (!_playeBtn) {
         _playeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_playeBtn setImage:ZFPlayerImage(@"ZFPlayer_repeat_video") forState:UIControlStateNormal];
-        [_playeBtn addTarget:self action:@selector(centerPlayBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_playeBtn addTarget:self action:@selector(playBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playeBtn;
 }
