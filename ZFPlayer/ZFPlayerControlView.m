@@ -159,6 +159,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         //        [self hideControlView];
         //        self.bottomImageView.hidden = YES;
         //        self.topImageView.hidden = YES;
+        self.playeBtn.hidden = NO;
         
     }
     return self;
@@ -263,7 +264,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     }];
     
     [self.playeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(50);
+//        make.width.height.mas_equalTo(50);
         make.center.equalTo(self);
     }];
     
@@ -306,6 +307,8 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         make.leading.trailing.mas_offset(0);
         make.bottom.mas_offset(0);
     }];
+    
+    [self bringSubviewToFront:self.playeBtn];
 }
 
 - (void)layoutSubviews {
@@ -389,6 +392,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 
 - (void)playBtnClick:(UIButton *)sender {
     sender.selected = !sender.selected;
+    self.playeBtn.hidden = !sender.selected;
     if ([self.delegate respondsToSelector:@selector(zf_controlView:playAction:)]) {
         [self.delegate zf_controlView:self playAction:sender];
     }
@@ -429,6 +433,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 }
 
 - (void)centerPlayBtnClick:(UIButton *)sender {
+    [self playBtnClick:self.startBtn];
     if ([self.delegate respondsToSelector:@selector(zf_controlView:cneterPlayAction:)]) {
         [self.delegate zf_controlView:self cneterPlayAction:sender];
     }
@@ -799,7 +804,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 - (UIButton *)playeBtn {
     if (!_playeBtn) {
         _playeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playeBtn setImage:ZFPlayerImage(@"ZFPlayer_play_btn") forState:UIControlStateNormal];
+        [_playeBtn setImage:ZFPlayerImage(@"ZFPlayer_repeat_video") forState:UIControlStateNormal];
         [_playeBtn addTarget:self action:@selector(centerPlayBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playeBtn;
