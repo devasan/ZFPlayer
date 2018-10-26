@@ -308,7 +308,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
         make.bottom.mas_offset(0);
     }];
     
-//    [self bringSubviewToFront:self.playeBtn];
+    [self bringSubviewToFront:self.playeBtn];
 }
 
 - (void)layoutSubviews {
@@ -1070,6 +1070,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self.dragged = NO;
     // 结束滑动时候把开始播放按钮改为播放状态
     self.startBtn.selected = YES;
+    self.playeBtn.hidden = YES;
     // 滑动结束延时隐藏controlView
     [self autoFadeOutControlView];
 }
@@ -1176,6 +1177,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 /** 播放按钮状态 */
 - (void)zf_playerPlayBtnState:(BOOL)state {
     self.startBtn.selected = state;
+    self.playeBtn.hidden = state;
 }
 
 /** 锁定屏幕方向按钮状态 */
