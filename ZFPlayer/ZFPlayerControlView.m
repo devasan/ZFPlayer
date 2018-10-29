@@ -494,7 +494,8 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self.showing = NO;
     // 延迟隐藏controlView
     [self zf_playerShowControlView];
-    
+    self.startBtn.selected = NO;
+
 }
 
 /**
@@ -1125,7 +1126,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self.backgroundColor  = RGBA(0, 0, 0, .3);
     ZFPlayerShared.isStatusBarHidden = NO;
     self.bottomProgressView.alpha = 0;
-    
+    self.startBtn.selected = NO;
     
 }
 
