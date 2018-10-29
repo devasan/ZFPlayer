@@ -1077,6 +1077,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     // 结束滑动时候把开始播放按钮改为播放状态
     self.startBtn.selected = YES;
     self.playeBtn.hidden = YES;
+    self.repeatBtn.hidden = YES;
     // 滑动结束延时隐藏controlView
     [self autoFadeOutControlView];
 }
