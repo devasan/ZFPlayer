@@ -264,7 +264,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     }];
     
     [self.playeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.height.mas_equalTo(50);
+        //        make.width.height.mas_equalTo(50);
         make.center.equalTo(self);
     }];
     
@@ -433,7 +433,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 }
 
 - (void)centerPlayBtnClick:(UIButton *)sender {
-    [self playBtnClick:self.startBtn];
+    //    [self playBtnClick:self.startBtn];
     if ([self.delegate respondsToSelector:@selector(zf_controlView:cneterPlayAction:)]) {
         [self.delegate zf_controlView:self cneterPlayAction:sender];
     }
@@ -562,6 +562,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     }
     self.bottomProgressView.alpha  = 0;
     ZFPlayerShared.isStatusBarHidden = NO;
+    self.playeBtn.hidden = self.startBtn.selected;
 }
 
 - (void)hideControlView {
@@ -1124,6 +1125,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self.backgroundColor  = RGBA(0, 0, 0, .3);
     ZFPlayerShared.isStatusBarHidden = NO;
     self.bottomProgressView.alpha = 0;
+    
     
 }
 
