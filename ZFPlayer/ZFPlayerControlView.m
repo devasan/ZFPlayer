@@ -393,8 +393,12 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 - (void)playBtnClick:(UIButton *)sender {
     sender.selected = !sender.selected;
     self.playeBtn.hidden = sender.selected;
-    if ([self.delegate respondsToSelector:@selector(zf_controlView:playAction:)]) {
-        [self.delegate zf_controlView:self playAction:sender];
+    if (self.playeEnd) {
+        [self repeatBtnClick:self.repeatBtn];
+    }else{
+        if ([self.delegate respondsToSelector:@selector(zf_controlView:playAction:)]) {
+            [self.delegate zf_controlView:self playAction:sender];
+        }
     }
 }
 
